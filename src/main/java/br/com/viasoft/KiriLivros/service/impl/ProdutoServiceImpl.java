@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -27,8 +28,13 @@ public class ProdutoServiceImpl extends CrudServiceImpl<Produto, Long> implement
 
     @Override
     public List<Produto> findAll() {
-        List<Produto> result = (List<Produto>) super.findAll();
+        List<Produto> result = super.findAll();
         Collections.sort(result);
         return result;
+    }
+
+    @Override
+    public List<Produto> findByAutor(String autor) {
+        return produtoRepository.findAllByAutor(autor);
     }
 }

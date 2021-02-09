@@ -20,8 +20,6 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    ProdutoRepository produtoRepository;
-    @Autowired
     ProdutoService produtoService;
 
     @GetMapping("/produto")
@@ -30,10 +28,17 @@ public class ProdutoController {
         model.addAttribute("lista", lista);
         return "produto/listaprodutos";
     }
+
+    @GetMapping("/produto/autor/{autor}")
+    public String listaProdutoByAutor(@PathVariable("autor") String autor, Model model) {
+        List<Produto> lista = produtoService.findByAutor(autor);
+        model.addAttribute("lista", lista);
+        return "produto/listaprodutos";
+    }
     
     @GetMapping("/produto/{id}")
     public String listaProdutoById(@PathVariable("id") Long id, Model model){
-        Produto p1 = produtoRepository.findById(id).orElse(null);
+        Produto p1 = produtoService.findById(id).orElse(null);
 
         model.addAttribute("produto",p1);
         return "produto/produtodetail";
@@ -51,7 +56,7 @@ public class ProdutoController {
         }
 
         Produto produto = produtoDTO.toProduto();
-        produtoRepository.save(produto);
+        produtoService.save(produto);
         return "produto/formularioproduto";
     }
 }
