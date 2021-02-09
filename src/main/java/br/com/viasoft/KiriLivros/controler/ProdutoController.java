@@ -11,12 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class ProdutoController {
 
     @Autowired
     ProdutoRepository produtoRepository;
+
+    @GetMapping("/produto")
+    public String listaProduto(Model model){
+        List<Produto> lista = produtoRepository.findAll();
+        model.addAttribute("lista", lista);
+        return "produto/listaprodutos";
+    }
 
     @GetMapping("/produto/novo")
     public String getProduto(ProdutoFormularioDTO produtoFormularioDTO){

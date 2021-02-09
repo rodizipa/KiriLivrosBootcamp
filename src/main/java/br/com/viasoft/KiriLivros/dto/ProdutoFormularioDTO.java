@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Data
 public class ProdutoFormularioDTO {
-    @NotEmpty
+    @NotEmpty(message = "Coloca um nome ai parça")
     private String nome;
     @NotEmpty
     private String autor;
