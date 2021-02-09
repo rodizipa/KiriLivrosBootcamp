@@ -3,6 +3,7 @@ package br.com.viasoft.KiriLivros.controler;
 import br.com.viasoft.KiriLivros.dto.ProdutoFormularioDTO;
 import br.com.viasoft.KiriLivros.model.Produto;
 import br.com.viasoft.KiriLivros.repository.ProdutoRepository;
+import br.com.viasoft.KiriLivros.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,12 @@ public class ProdutoController {
 
     @Autowired
     ProdutoRepository produtoRepository;
+    @Autowired
+    ProdutoService produtoService;
 
     @GetMapping("/produto")
     public String listaProduto(Model model){
-        List<Produto> lista = produtoRepository.findAllByNomeOrderByNomeAsc("%%");
+        List<Produto> lista = produtoService.findAll();
         model.addAttribute("lista", lista);
         return "produto/listaprodutos";
     }
