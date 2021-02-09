@@ -3,17 +3,13 @@ package br.com.viasoft.KiriLivros.service.impl;
 import br.com.viasoft.KiriLivros.model.Produto;
 import br.com.viasoft.KiriLivros.repository.ProdutoRepository;
 import br.com.viasoft.KiriLivros.service.ProdutoService;
-import framework.CrudServiceImpl;
+import br.com.viasoft.KiriLivros.framework.CrudServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdutoServiceImpl extends CrudServiceImpl<Produto, Long> implements ProdutoService {
@@ -35,6 +31,16 @@ public class ProdutoServiceImpl extends CrudServiceImpl<Produto, Long> implement
 
     @Override
     public List<Produto> findByAutor(String autor) {
-        return produtoRepository.findAllByAutor(autor);
+        return produtoRepository.findAllByAutorContainsIgnoreCase(autor);
+    }
+
+    @Override
+    public void preSave(Produto produto) {
+        System.out.println("Passei pelo pre save, o id era nulo");
+    }
+
+    @Override
+    public void postSave(Produto produto) {
+        System.out.println(String.format("Passei pelo post save, o id é %d", produto.getId()));
     }
 }

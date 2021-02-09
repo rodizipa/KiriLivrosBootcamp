@@ -1,4 +1,4 @@
-package framework;
+package br.com.viasoft.KiriLivros.framework;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,4 +8,6 @@ public interface CrudService<T, ID> {
     Optional<T> findById(ID id);
     T save(T t);
     void delete(ID id);
+    void preSave(T t);
+    void postSave(T t);
 }

@@ -1,4 +1,4 @@
-package framework;
+package br.com.viasoft.KiriLivros.framework;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,11 +21,24 @@ public abstract class CrudServiceImpl<T, ID> implements CrudService<T,ID> {
 
     @Override
     public T save(T t) {
-        return getRepository().save(t);
+        preSave(t);
+        t = getRepository().save(t);
+        postSave(t);
+        return t;
     }
 
     @Override
     public void delete(ID id) {
         getRepository().deleteById(id);
+    }
+
+    @Override
+    public void preSave(T t) {
+
+    }
+
+    @Override
+    public void postSave(T t) {
+
     }
 }
