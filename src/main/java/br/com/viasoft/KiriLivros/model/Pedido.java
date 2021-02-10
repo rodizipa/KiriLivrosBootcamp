@@ -10,7 +10,7 @@ public class Pedido {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    private String cliente;
+    private Cliente cliente;
 
     private BigDecimal valorTotal;
 }
