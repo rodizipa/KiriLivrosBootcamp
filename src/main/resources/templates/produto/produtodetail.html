@@ -6,10 +6,18 @@
 </head>
 <body>
     <div id="conteudo">
-        <h1>ID: <span th:text="${produto.id}" ></span></h1>
-        <h1>Nome: <span th:text="${produto.nome}">Nome Do Produto</span></h1>
-        <h1>Autor: <span th:text="${produto.autor}">Nome Do Autor</span></h1>
-        <img th:src="${produto.imagem}" alt="Imagem">
+        <div class="container">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h1>ID: <span th:text="${produto.id}" ></span></h1>
+                    <h1>Nome: <span th:text="${produto.nome}">Nome Do Produto</span></h1>
+                    <h1>Autor: <span th:text="${produto.autor}">Nome Do Autor</span></h1>
+                    <img th:src="${produto.imagem}" alt="Imagem">
+                    <br>
+                    <a th:href="@{'/produto/edit/' + ${produto.id}}" class="btn btn-secondary mt-3">Editar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

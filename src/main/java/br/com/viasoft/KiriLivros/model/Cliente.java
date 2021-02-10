@@ -2,10 +2,9 @@ package br.com.viasoft.KiriLivros.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,4 +16,7 @@ public class Cliente {
     private String cpf;
     private String email;
     private String endereco;
+
+    @OneToMany(orphanRemoval = true)
+    List<Pedido> pedidos = new ArrayList<Pedido>();
 }

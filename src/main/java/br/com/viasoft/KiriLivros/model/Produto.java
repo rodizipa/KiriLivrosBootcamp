@@ -13,6 +13,7 @@ public class Produto implements Comparable<Produto> {
     private Long id;
     private String nome;
     private String autor;
+    @Column(length = 1024)
     private String imagem;
 
     @Override

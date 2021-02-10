@@ -90,7 +90,7 @@ public class ProdutoController {
     }
 
     @GetMapping("produto/delete/{id}")
-    public String removeProduto(@PathVariable("id") Long id, Principal principal, ProdutoFormularioDTO produtoDTO) {
+    public String removeProduto(@PathVariable("id") Long id, Principal principal) {
         var roles = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         List<String> cargos = roles.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         if (cargos.get(0).equals("ROLE_ADM")){
